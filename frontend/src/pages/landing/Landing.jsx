@@ -7,7 +7,9 @@ const Landing = () => {
     return (
         <div className='bg-white dark:bg-[#0a0b10] min-h-screen pb-4'>
             <Navbar />
-            <Blogs />
+            <div className='min-h-screen'>
+                <Blogs />
+            </div>
             <Footer />
         </div>
     )

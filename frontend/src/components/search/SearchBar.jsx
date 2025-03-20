@@ -15,7 +15,7 @@ const SearchBar = () => {
             value={searchTerm}
             onChange={(e) => {
                 setSearchTerm(e.target.value)
-            }} type="text" placeholder='Search' className='bg-gray-100 dark:bg-[#1b1d26] dark:text-white w-full lg:w-72 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-400' />
+            }} type="text" placeholder='Search' className='bg-gray-200 dark:bg-[#1b1d26] dark:text-white w-full lg:w-72 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-400' />
             <button 
             className='absolute right-0'
             onClick={(e) => {
