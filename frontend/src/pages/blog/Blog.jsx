@@ -8,6 +8,7 @@ import { BlogSkeleton } from '../../components/skeletons/BlogSkeleton';
 import CommentsSpinner from '../../components/skeletons/CommentsSpinner';
 import CommentSkeleton from '../../components/skeletons/CommentSkeleton';
 import Footer from '../../components/footer/Footer';
+import { profileBackground } from '../utils/profileBackground';
 
 const Blog = () => {
     const {id} = useParams();
@@ -150,6 +151,8 @@ function CommentCard({comment, createdAt, userId}){
             })
     })
 
+    const bgColorClass = profileBackground(username)
+
     if(loading){
         return (
             <div>
@@ -164,7 +167,7 @@ function CommentCard({comment, createdAt, userId}){
                     <span className="text-[1.2rem] lg:text-[1.4rem] text-gray-800 dark:text-gray-300">{initial.toUpperCase()}</span>
                 </div> */}
                 <div className='h-16 w-10'>
-                    <div className='bg-gray-300 dark:bg-gray-700 text-black text-[1.4rem] py-1 mt-1 flex justify-center items-center rounded-full dark:text-white'>
+                    <div className={`${bgColorClass} text-white text-[1.4rem] py-1 mt-1 flex justify-center items-center rounded-full dark:text-white`}>
                         {initial.toUpperCase()}
                     </div>
                 </div>
