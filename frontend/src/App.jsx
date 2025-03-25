@@ -11,27 +11,27 @@ import TypeWriter from "./components/other/TypeWriter"
 import SearchBlogs from "./pages/search/SearchBlogs"
 
 function App() {
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        // Simulate loading time (remove this in production)
-        const timer = setTimeout(() => {
-            setLoading(false);
-        }, 2000);
+    // useEffect(() => {
+    //     // Simulate loading time (remove this in production)
+    //     const timer = setTimeout(() => {
+    //         setLoading(false);
+    //     }, 2000);
     
-        // Clean up
-        return () => clearTimeout(timer);
-    }, []);
+    //     // Clean up
+    //     return () => clearTimeout(timer);
+    // }, []);
 
-    if(loading){
-        return (
-            <ThemeProvider>
-                <div className="dark:bg-[#0a0b10]">
-                    <TypeWriter text="Writely." />
-                </div>
-            </ThemeProvider>
-        )
-    }
+    // if(loading){
+    //     return (
+    //         <ThemeProvider>
+    //             <div className="dark:bg-[#0a0b10]">
+    //                 <TypeWriter text="Writely." />
+    //             </div>
+    //         </ThemeProvider>
+    //     )
+    // }
 
     return (
         <BrowserRouter>

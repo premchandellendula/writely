@@ -9,6 +9,7 @@ import CommentsSpinner from '../../components/skeletons/CommentsSpinner';
 import CommentSkeleton from '../../components/skeletons/CommentSkeleton';
 import Footer from '../../components/footer/Footer';
 import { profileBackground } from '../utils/profileBackground';
+import Likes from '../../components/likes/Likes';
 
 const Blog = () => {
     const {id} = useParams();
@@ -16,6 +17,7 @@ const Blog = () => {
     const [name, setName] = useState("")
     const [content, setContent] = useState("")
     const [initial, setInitial] = useState('')
+    const [likeCount, setLikeCount] = useState(0);
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -25,6 +27,8 @@ const Blog = () => {
                 setInitial(res.data.blog.author.name[0]);
                 setContent(res.data.blog.content)
                 setName(res.data.blog.author.name)
+                setLikeCount(res.data.blog.likeCount)
+                console.log(res.data.blog.likeCount);
                 setLoading(false)
                 // console.log(res.data.blog.author.name)
                 // console.log(res.data.blog.content)
@@ -67,6 +71,9 @@ const Blog = () => {
                         </div>
                         <div className="text-[1.1rem] lg:text-xl text-justify font-normal pt-4 text-gray-800 dark:text-gray-100">
                             {blog.content}
+                        </div>
+                        <div className='mt-8'>
+                            <Likes id={id} initialCount={likeCount} />
                         </div>
                     </div>
                     <div className="col-span-3">
