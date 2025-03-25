@@ -9,7 +9,7 @@ const Blogs = () => {
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0)
-    const [limit, setLimit] = useState(1);
+    const [limit, setLimit] = useState(15);
 
     const nextPage = () => {
         if(page === totalPages){

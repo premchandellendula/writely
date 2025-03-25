@@ -92,6 +92,7 @@ router.get('/blog/:id', async (req, res) => {
                 content: true,
                 id: true,
                 createdAt: true,
+                likeCount: true,
                 author: {
                     select: {
                         name: true
