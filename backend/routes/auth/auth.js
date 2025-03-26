@@ -3,7 +3,8 @@ const router = express.Router()
 const zod = require('zod');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
-const { PrismaClient } = require('@prisma/client')
+const { PrismaClient } = require('@prisma/client');
+const authMiddleware = require('../../middleware/authMiddleware');
 const prisma = new PrismaClient();
 
 const singupBody = zod.object({
@@ -109,12 +110,12 @@ router.post('/signin', async (req, res) => {
     }
 })
 
-router.get("/user/:id", async (req, res) => {
+router.get("/user/profile", authMiddleware, async (req, res) => {
     
     try{
         const user = await prisma.user.findFirst({
             where: {
-                id: parseInt(req.params.id)
+                id: req.userId
             },
             select: {
                 username: true

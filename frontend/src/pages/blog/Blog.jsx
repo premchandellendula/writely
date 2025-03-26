@@ -43,7 +43,7 @@ const Blog = () => {
         return (
             <div className='dark:bg-[#0a0b10]'>
                 <Navbar />
-                <div className='mt-10 h-screen'>
+                <div className='h-screen pt-24'>
                     <BlogSkeleton />
                     <Comment />
                     <p className='h-[1px] w-full max-w-screen-lg mx-auto bg-gray-100 mb-10 mt-12 dark:bg-gray-600'></p>
@@ -54,7 +54,7 @@ const Blog = () => {
     return (
         <div className='w-full dark:bg-[#0a0b10] min-h-screen'>
             <Navbar />
-            <div className="flex justify-center py-12">
+            <div className="flex justify-center py-12 pt-26">
                 <div className="grid grid-cols-12 w-[95%] lg:w-[80%] gap-8 m-auto px-10 max-w-screen-xl">
                     <div className="col-span-9">
                         <div className="text-[2rem] lg:text-[2.5rem] font-bold dark:text-gray-200">

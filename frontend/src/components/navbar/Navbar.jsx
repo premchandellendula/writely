@@ -4,12 +4,43 @@ import { Link } from 'react-router-dom'
 import NormalButton from '../other/NormalButton'
 import ThemeBtn from './ThemeBtn'
 import SearchBar from '../search/SearchBar'
+import { useBlurIn } from '../../pages/utils/animation'
+import axios from 'axios'
 
 const Navbar = () => {
-    const [open, setOpen] = useState(false)
-    const { logout, isAuthenticated } = useAuth()
+    const [open, setOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const { logout, isAuthenticated } = useAuth();
     const ref = useRef(null);
     const [showSearch, setShowSearch] = useState(false);
+    const blurIn = useBlurIn(300)
+    const [initial, setInitial] = useState('');
+
+    useEffect(() => {
+        axios.get("http://localhost:3000/api/v1/auth/user/profile", {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        })
+        .then(res => {
+            console.log(res.data.user.username);
+            setInitial(res.data.user.username[0] || 'U');
+        })
+    }), []
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if(window.scrollY > 5){
+                setIsScrolled(true);
+            }else{
+                setIsScrolled(false)
+            }
+        }
+
+        window.addEventListener("scroll", handleScroll)
+
+        return () => window.removeEventListener("scroll", handleScroll)
+    }, [])
 
     const handleClickOutside = (event) => {
         if(ref.current && !ref.current.contains(event.target)){
@@ -25,7 +56,7 @@ const Navbar = () => {
         }
     }, [])
     return (
-        <div className='border-b border-gray-200 dark:border-b-gray-700 flex justify-between items-center bg-white dark:bg-[#0a0b10] px-4 lg:px-8 py-4'>
+        <div className={`border-b w-full top-0 left-0 right-0 fixed z-50 border-gray-200 dark:border-b-gray-800 flex justify-between items-center px-4 lg:px-8 py-4 ${blurIn} ${isScrolled ? 'bg-white/60 dark:bg-[#0a0b10]/30 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
             {showSearch ? (
                 <div className='flex items-center w-full'>
                     <button 
@@ -66,15 +97,16 @@ const Navbar = () => {
                                 </Link>
                                 <div
                                     onClick={() => setOpen((prev) => !prev)}
-                                    className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full cursor-pointer"
+                                    className="relative inline-flex items-center bg-gray-300/80 dark:bg-gray-700/50 justify-center w-10 h-10 overflow-hidden rounded-full cursor-pointer"
                                     aria-haspopup="true"
                                     aria-expanded={open}
                                 >
-                                    <i className="bx bxs-user-circle text-gray-400/70 text-[2.9rem]"></i>
+                                    {/* <i className="bx bxs-user-circle text-gray-400/70 text-[2.9rem]"></i> */}
+                                    <span className='text-[2.1rem] text-gray-600/90 dark:text-gray-300 pb-2.5 flex justify-center items-center'>{initial}</span>
                                 </div>
                                 {open && (
                                     <div
-                                        className="absolute right-8 top-16 bg-gray-200 rounded-md text-black z-100"
+                                        className="absolute right-8 top-16 px-2 py-1 bg-gray-200 dark:bg-gray-600 rounded-md text-black z-100"
                                         role="menu"
                                         aria-labelledby="dropdown"
                                         ref={ref}
@@ -83,7 +115,7 @@ const Navbar = () => {
                                             onClick={() => {
                                                 logout();
                                             }}
-                                            className="cursor-pointer p-2 hover:bg-gray-300 rounded-md"
+                                            className="cursor-pointer p-2 hover:bg-gray-300 hover:dark:bg-gray-700/40 rounded-md"
                                             role="menuitem"
                                         >
                                             Logout
