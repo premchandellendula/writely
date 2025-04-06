@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../../components/navbar/Navbar';
 import { timeAgo } from '../utils/timeAgo';
 import { useAuth } from '../other/AuthProvider';
@@ -18,7 +18,8 @@ const Blog = () => {
     const [content, setContent] = useState("")
     const [initial, setInitial] = useState('')
     const [likeCount, setLikeCount] = useState(0);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
+    const [username, setUsername] = useState("");
 
     useEffect(() => {
         axios.get(`http://localhost:3000/api/v1/blogs/blog/${id}`)
@@ -28,7 +29,8 @@ const Blog = () => {
                 setContent(res.data.blog.content)
                 setName(res.data.blog.author.name)
                 setLikeCount(res.data.blog.likeCount)
-                console.log(res.data.blog.likeCount);
+                setUsername(res.data.blog.author.username)
+                // console.log(res.data.blog.likeCount);
                 setLoading(false)
                 // console.log(res.data.blog.author.name)
                 // console.log(res.data.blog.content)
@@ -86,9 +88,11 @@ const Blog = () => {
                                 <div className="flex items-center justify-center bg-gray-300 dark:bg-gray-600 rounded-full h-6 w-6 lg:h-8 lg:w-8">
                                     <span className="text-[1.2rem] lg:text-[1.4rem] text-gray-800 dark:text-gray-300">{initial.toUpperCase()}</span>
                                 </div>
-                                <div className="text-[1.5rem] lg:text-[1.7rem] pb-1.5 font-semibold dark:text-gray-300">
-                                    {name || "Anonymous"}
-                                </div>
+                                <Link to={`/${username}`}>
+                                    <div className="text-[1.5rem] lg:text-[1.7rem] pb-1.5 font-semibold dark:text-gray-300 hover:underline">
+                                        {name || "Anonymous"}
+                                    </div>
+                                </Link>
                             </div>
                             <div>
                                 <div className="pt-2 text-gray-700 dark:text-gray-400 text-justify text-[0.8rem] lg:text-[1rem]">
