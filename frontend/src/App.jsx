@@ -9,6 +9,8 @@ import Publish from "./pages/publish/Publish"
 import { useEffect, useState } from "react"
 import TypeWriter from "./components/other/TypeWriter"
 import SearchBlogs from "./pages/search/SearchBlogs"
+import Profile from "./pages/profile/Profile"
+import UserProfile from "./pages/profile/UserProfile"
 
 function App() {
     // const [loading, setLoading] = useState(true);
@@ -44,6 +46,8 @@ function App() {
                         <Route path="/blog/:id" element={<Blog />} />
                         <Route path="/publish" element={<Publish />} />
                         <Route path="/search" element={<SearchBlogs />} />
+                        <Route path="/profile" element={<Profile />} />
+                        <Route path="/:username" element={<UserProfile />} />
                     </Routes>
                 </AuthProvider>
             </ThemeProvider>

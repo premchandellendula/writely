@@ -23,7 +23,7 @@ const Navbar = () => {
             }
         })
         .then(res => {
-            console.log(res.data.user.username);
+            // console.log(res.data.user.username);
             setInitial(res.data.user.username[0] || 'U');
         })
     }), []
@@ -106,19 +106,34 @@ const Navbar = () => {
                                 </div>
                                 {open && (
                                     <div
-                                        className="absolute right-8 top-16 px-2 py-1 bg-gray-200 dark:bg-gray-600 rounded-md text-black z-100"
+                                        className="absolute right-8 top-16 px-2 py-2 bg-gray-200/70 dark:bg-gray-800/70 rounded-md text-black z-100"
                                         role="menu"
                                         aria-labelledby="dropdown"
                                         ref={ref}
                                     >
+                                        <Link to={'/profile'}>
+                                            <p
+                                                className="cursor-pointer p-2 hover:bg-gray-300/50 dark:text-gray-300 hover:dark:bg-gray-700/40 flex items-center justify-center gap-2 rounded-md"
+                                                role="menuitem"
+                                                >
+                                                <i class='bx bx-user'></i>
+                                                <span>
+                                                    Profile
+                                                </span>
+                                            </p>
+                                        </Link>
+
                                         <p
                                             onClick={() => {
                                                 logout();
                                             }}
-                                            className="cursor-pointer p-2 hover:bg-gray-300 hover:dark:bg-gray-700/40 rounded-md"
+                                            className="cursor-pointer p-2 hover:bg-gray-300 dark:text-gray-300 hover:dark:bg-gray-700/40 flex items-center justify-center gap-2 rounded-md"
                                             role="menuitem"
                                         >
-                                            Logout
+                                            <i className='bx bx-log-out'></i>
+                                            <span>
+                                                Logout
+                                            </span>
                                         </p>
                                     </div>
                                 )}

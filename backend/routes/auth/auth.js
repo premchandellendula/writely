@@ -118,6 +118,34 @@ router.get("/user/profile", authMiddleware, async (req, res) => {
                 id: req.userId
             },
             select: {
+                name: true,
+                username: true,
+                id: true,
+                email: true,
+                blogs: true,
+                likes: true
+            }
+        })
+
+        res.status(201).json({
+            user: user
+        })
+    }catch(err){
+        return res.status(500).json({
+            message: "Error fetching user", 
+            error: err.message
+        })
+    }
+})
+
+router.get("/user/:id", async (req, res) => {
+    
+    try{
+        const user = await prisma.user.findFirst({
+            where: {
+                id: parseInt(req.params.id)
+            },
+            select: {
                 username: true
             }
         })

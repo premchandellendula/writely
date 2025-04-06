@@ -18,7 +18,7 @@ const Likes = ({id, initialLiked=false, initialCount=0}) => {
                     }
                 })
                 setLiked(response.data.liked)
-                console.log(response.data.liked)
+                // console.log(response.data.liked)
             }catch(err){
                 console.error("Error checking like status: ", err)
             }
