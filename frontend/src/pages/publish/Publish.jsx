@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
+import TextEditor from "../../components/RTE/TextEditor";
+import parse from 'html-react-parser'
+import DOMPurify from 'dompurify'
 
 const Publish = () => {
     const [title, setTitle] = useState("");
@@ -10,25 +13,31 @@ const Publish = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
-    return <div className="dark:bg-[#0a0b10] h-screen">
+    return <div className="dark:bg-[#0a0b10]">
         <Navbar />
-        <div className="flex justify-center pt-8">
-            <div className="max-w-screen-lg w-[85%] lg:w-full">
+        <div className="flex justify-center pt-32">
+            <div className="w-[92%] lg:w-[83%]">
                 <input onChange={(e) => {
                     setTitle(e.target.value)
                 }} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-gray-800 dark:bg-gray-900 dark:text-white dark:border-none" placeholder="Title" />
             </div>
         </div> 
         <div className="flex justify-center pt-8">
-            <TextArea 
+            {/* <TextArea 
             value={content}
             onChange={(e) => {
                 setContent(e.target.value)
-            }} />
+            }} /> */}
+
+            <TextEditor content={content} setContent={setContent} />
         </div>
 
+        {/* <div className="dark:text-white">
+            {parse(DOMPurify.sanitize(content))}
+        </div> */}
+
         <div className="flex justify-center">
-            <div className="max-w-screen-lg w-[85%] lg:w-full">
+            <div className=" w-[92%] lg:w-[83%]">
                 <button
                 onClick={async () => {
                     if(title === "" || content === ""){

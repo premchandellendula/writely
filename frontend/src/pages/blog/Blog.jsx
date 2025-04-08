@@ -10,6 +10,8 @@ import CommentSkeleton from '../../components/skeletons/CommentSkeleton';
 import Footer from '../../components/footer/Footer';
 import { profileBackground } from '../utils/profileBackground';
 import Likes from '../../components/likes/Likes';
+import parse from 'html-react-parser';
+import DOMPurify from 'dompurify'
 
 const Blog = () => {
     const {id} = useParams();
@@ -71,8 +73,8 @@ const Blog = () => {
                                 {`${Math.ceil(content.length / 1000)} mins read`}
                             </div>
                         </div>
-                        <div className="text-[1.1rem] lg:text-xl text-justify font-normal pt-4 text-gray-800 dark:text-gray-100">
-                            {blog.content}
+                        <div className="text-[1.1rem] lg:text-xl text-justify font-normal pt-7 text-gray-800 dark:text-gray-300">
+                            {parse(DOMPurify.sanitize(blog.content))}
                         </div>
                         <div className='mt-8'>
                             <Likes id={id} initialCount={likeCount} />

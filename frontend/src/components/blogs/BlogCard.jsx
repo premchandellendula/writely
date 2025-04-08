@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom";
 import { timeAgo } from "../../pages/utils/timeAgo";
+import DOMPurify from 'dompurify'
 
 const BlogCard = ({id, authorName, title, content, createdAt}) => {
     if (!authorName) authorName = "Anonymous";
     if (!content) content = "";
     if (!createdAt) createdAt = new Date();
+
+    const getTextContent = (html) => {
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        return doc.body.textContent || "";
+    };
+
     return <Link to={`/blog/${id}`}>
         <div className="bg-gray-50 hover:shadow-xl hover:scale-[1.01] transition delay-100 group duration-300 ease-in-out dark:bg-[#0a0b10] rounded-lg px-3 py-5 my-3 shadow-md lg:w-screen max-w-screen-md cursor-pointer w-[85%] m-auto dark:border dark:border-gray-800">
             <div className="flex items-center">
@@ -21,7 +28,8 @@ const BlogCard = ({id, authorName, title, content, createdAt}) => {
             </div>
 
             <div className="text-[0.9rem] lg:text-[1.1rem] font-normal text-gray-600 dark:text-gray-200">
-                {content.slice(0, 100) + "..."}
+                {/* {parse(DOMPurify.sanitize(content)).slice(0, 100) + "..."} */}
+                {getTextContent(DOMPurify.sanitize(content)).slice(0,100) + "..."}
             </div>
 
             <div className="text-gray-600 dark:text-gray-300 text-sm font-normal pt-3">

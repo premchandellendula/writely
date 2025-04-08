@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { timeAgo } from '../utils/timeAgo'
 import ProfileSkeleton from '../../components/skeletons/ProfileSkeleton'
 import Spinner from '../../components/skeletons/Spinner'
+import DOMPurify from 'dompurify'
 
 const Profile = () => {
     const [details, setDetails] = useState({})
@@ -246,6 +247,10 @@ export function MyLikes(){
 }
 
 export function MyBlogCard({id, authorName, title, content, createdAt}){
+    const getTextContent = (html) => {
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        return doc.body.textContent || "";
+    };
     return (
         <Link to={`/blog/${id}`}>
             <div className="bg-gray-50 hover:shadow-sm transition delay-100 duration-300 ease-in-out dark:bg-[#0a0b10] py-5 my-3 lg:w-screen max-w-screen-md cursor-pointer border-b border-gray-200 dark:border-gray-900">
@@ -264,7 +269,7 @@ export function MyBlogCard({id, authorName, title, content, createdAt}){
                 </div>
 
                 <div className="text-[0.9rem] lg:text-[1.1rem] font-normal text-gray-600 dark:text-gray-200">
-                    {content.slice(0, 100) + "..."}
+                    {getTextContent(DOMPurify.sanitize(content)).slice(0,100) + "..."}
                 </div>
 
                 <div className="text-gray-600 dark:text-gray-300 text-sm font-normal pt-3">
