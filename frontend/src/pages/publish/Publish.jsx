@@ -6,6 +6,7 @@ import Footer from "../../components/footer/Footer";
 import TextEditor from "../../components/RTE/TextEditor";
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
+import { toast } from "sonner";
 
 const Publish = () => {
     const [title, setTitle] = useState("");
@@ -56,9 +57,11 @@ const Publish = () => {
                                 Authorization: "Bearer " + localStorage.getItem("token")
                             }
                         })
+                        toast.success(response.data.message)
                         navigate("/")
                     }catch(e){
                         console.error('Failed to signup:', e);
+                        toast.success(e.response.data.message)
                     }finally{
                         setLoading(false);
                     }
