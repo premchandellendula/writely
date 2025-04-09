@@ -8,6 +8,7 @@ import axios from 'axios'
 import PasswordInput from '../../components/auth/PasswordInput'
 import { useAuth } from '../other/AuthProvider'
 import ThemeBtn from '../../components/navbar/ThemeBtn'
+import { toast } from 'sonner'
 
 const Signin = () => {
     const [email, setEmail] = useState("")
@@ -42,11 +43,14 @@ const Signin = () => {
                             const token = response.data.token;
                             localStorage.setItem("token", token);
                             login()
+                            console.log(response);
+                            toast.success(response.data.message)
                             if(email && password){
                                 navigate('/')
                             }
                         }catch(err){
-                            console.error("Failed to signin:", err)
+                            console.error("Failed to signin:", err);
+                            toast.error(err.response.data.message);
                         }finally{
                             setLoading(false)
                         }

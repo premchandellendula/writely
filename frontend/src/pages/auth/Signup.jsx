@@ -7,6 +7,7 @@ import BottomWarning from '../../components/auth/BottomWarning'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import ThemeBtn from '../../components/navbar/ThemeBtn'
+import { toast } from 'sonner'
 
 const Signup = () => {
     const [username, setUsername] = useState("");
@@ -49,11 +50,13 @@ const Signup = () => {
 
                             const token = response.data.token
                             localStorage.setItem("token", token)
+                            toast.success(response.data.message)
                             if(email && password){
                                 navigate('/')
                             }
                         }catch(err){
-                            console.log("Failed to signup: ", err)
+                            console.log("Failed to signup: ", err);
+                            toast.error(err.response.data.message)
                         }finally{
                             setLoading(false)
                         }

@@ -15,11 +15,12 @@ const singupBody = zod.object({
 })
 
 router.post('/signup', async (req, res) => {
-    const { success } = singupBody.safeParse(req.body)
+    const { success, error } = singupBody.safeParse(req.body)
 
     if(!success){
         return res.status(400).json({
-            message: "Incorrect inputs"
+            message: "Incorrect inputs",
+            error
         })
     }
 
@@ -55,7 +56,8 @@ router.post('/signup', async (req, res) => {
         const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET)
 
         return res.status(201).json({
-            token
+            token,
+            message: "Signup successful"
         })
     }catch(err){
         return res.status(500).json({
@@ -100,7 +102,8 @@ router.post('/signin', async (req, res) => {
         const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET);
 
         return res.status(201).json({
-            token
+            token,
+            message: "Signin successful"
         })
     }catch(err){
         return res.status(500).json({
