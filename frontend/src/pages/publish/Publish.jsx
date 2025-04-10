@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import TextEditor from "../../components/RTE/TextEditor";
-import parse from 'html-react-parser'
-import DOMPurify from 'dompurify'
 import { toast } from "sonner";
 
 const Publish = () => {
@@ -24,18 +22,8 @@ const Publish = () => {
             </div>
         </div> 
         <div className="flex justify-center pt-8">
-            {/* <TextArea 
-            value={content}
-            onChange={(e) => {
-                setContent(e.target.value)
-            }} /> */}
-
             <TextEditor content={content} setContent={setContent} />
         </div>
-
-        {/* <div className="dark:text-white">
-            {parse(DOMPurify.sanitize(content))}
-        </div> */}
 
         <div className="flex justify-center">
             <div className=" w-[92%] lg:w-[83%]">
@@ -81,19 +69,6 @@ const Publish = () => {
 
         <Footer />
     </div> 
-}
-
-function TextArea({onChange, value}){
-    const handleInput = (e) => {
-        const textarea = e.target;
-        textarea.style.height = "auto";
-        textarea.style.height = `${textarea.scrollHeight}px`;
-        onChange(e);
-    };
-    return <div className="max-w-screen-lg w-[85%] lg:w-full">
-        <textarea value={value} onChange={handleInput} rows={15} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-800 dark:bg-gray-900 dark:text-white dark:border-none" placeholder="Write your thoughts here..." style={{ maxHeight: "300px" }}></textarea>
-    </div>
-    
 }
 
 export default Publish

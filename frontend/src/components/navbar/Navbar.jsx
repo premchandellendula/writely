@@ -6,6 +6,7 @@ import ThemeBtn from './ThemeBtn'
 import SearchBar from '../search/SearchBar'
 import { useBlurIn } from '../../pages/utils/animation'
 import axios from 'axios'
+import { toast } from 'sonner'
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
@@ -102,7 +103,8 @@ const Navbar = () => {
                                     aria-expanded={open}
                                 >
                                     {/* <i className="bx bxs-user-circle text-gray-400/70 text-[2.9rem]"></i> */}
-                                    <span className='text-[2.1rem] text-gray-600/90 dark:text-gray-300 pb-2.5 flex justify-center items-center'>{initial}</span>
+                                    <span className='text-[2rem] text-gray-600/90 dark:text-gray-300 pb-1.5 flex justify-center items-center'>{initial}</span>
+                                    
                                 </div>
                                 {open && (
                                     <div
@@ -126,6 +128,7 @@ const Navbar = () => {
                                         <p
                                             onClick={() => {
                                                 logout();
+                                                toast.success("Logout succesful")
                                             }}
                                             className="cursor-pointer p-2 hover:bg-gray-300 dark:text-gray-300 hover:dark:bg-gray-700/40 flex items-center justify-center gap-2 rounded-md"
                                             role="menuitem"
