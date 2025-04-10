@@ -43,7 +43,7 @@ const Signin = () => {
                             const token = response.data.token;
                             localStorage.setItem("token", token);
                             login()
-                            console.log(response);
+                            // console.log(response);
                             toast.success(response.data.message)
                             if(email && password){
                                 navigate('/')

@@ -3,8 +3,9 @@ import Navbar from '../../components/navbar/Navbar'
 import axios from 'axios'
 import Footer from '../../components/footer/Footer'
 import ProfileSkeleton from '../../components/skeletons/ProfileSkeleton'
-import { MyBlogs, MyLikes, ProfileInfoSection, TabButton } from './Profile'
 import { useParams } from 'react-router-dom'
+import ProfileInfoSection from '../../components/profile/ProfileInfoSection'
+import MyBlogs from '../../components/profile/MyBlogs'
 
 const UserProfile = () => {
     const [details, setDetails] = useState({});
@@ -46,11 +47,11 @@ const UserProfile = () => {
                     {/* left div */}
                     <div className='col-span-12 lg:col-span-3 order-1 lg:order-2'>
                         <div className='lg:hidden'>
-                            <ProfileInfoSection details={details} initial={initial} isMobile={true} />
+                            <ProfileInfoSection details={details} isMobile={true} />
                         </div>
 
                         <div className='hidden lg:block lg:px-6'>
-                            <ProfileInfoSection details={details} initial={initial} isMobile={false} />
+                            <ProfileInfoSection details={details} isMobile={false} />
                         </div>
                     </div>
 
