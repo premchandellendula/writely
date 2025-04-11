@@ -28,7 +28,7 @@ const Comments = ({id}) => {
         )
     }
     return (
-        <div className='w-[74%] m-auto pb-6'>
+        <div className='w-[85%] lg:w-[74%] m-auto pb-6'>
             {comments.map((comment, idx) => <CommentCard key={idx} comment={comment.comment} createdAt={comment.createdAt} userId={comment.userId} />)}
             <Footer />
         </div>
