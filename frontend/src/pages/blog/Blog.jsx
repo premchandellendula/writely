@@ -9,6 +9,7 @@ import parse from 'html-react-parser';
 import DOMPurify from 'dompurify'
 import Comment from '../../components/comments/Comment';
 import Comments from '../../components/comments/Comments';
+import AuthorInfoSection from '../../components/profile/AuthorInfoSection';
 
 const Blog = () => {
     const {id} = useParams();
@@ -57,8 +58,18 @@ const Blog = () => {
             <Navbar />
             <div className="flex justify-center py-12 pt-26">
                 <div className="grid grid-cols-12 w-[95%] lg:w-[80%] gap-8 m-auto px-10 max-w-screen-xl">
-                    <div className="col-span-9">
-                        <div className="text-[2rem] lg:text-[2.5rem] font-bold dark:text-gray-200">
+                    <div className="col-span-12 lg:col-span-3 order-1 lg:order-2">
+                        <div className='lg:hidden'>
+                            <AuthorInfoSection initial={initial} name={name} username={username} isMobile={true} />
+                        </div>
+
+                        <div className='hidden lg:block'>
+                            <AuthorInfoSection initial={initial} name={name} username={username} isMobile={true} />
+                        </div>
+                    </div>
+
+                    <div className="col-span-12 lg:col-span-9 order-2 lg:order-1">
+                        <div className="text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] font-bold dark:text-gray-200">
                             {blog.title}
                         </div>
                         <div className='flex'>
@@ -70,35 +81,12 @@ const Blog = () => {
                                 {`${Math.ceil(content.length / 1000)} mins read`}
                             </div>
                         </div>
-                        <div className="text-[1.1rem] lg:text-xl text-justify font-normal pt-7 text-gray-800 dark:text-gray-300">
+                        <div className="text-[0.95rem] md:text-[1.1rem] lg:text-xl text-justify font-normal pt-7 text-gray-800 dark:text-gray-300">
                             {parse(DOMPurify.sanitize(blog.content))}
                         </div>
                         <div className='mt-8'>
                             <Likes id={id} initialCount={likeCount} />
                         </div>
-                    </div>
-                    <div className="col-span-3">
-                        <div className="text-gray-700 dark:text-gray-300 text-[0.9rem] lg:text-[1rem]">
-                            Author
-                        </div>
-
-                        <div className="flex flex-col">
-                            <div className="pr-3 gap-1 mt-2 flex items-center justify-start w-fit">
-                                <div className="flex items-center justify-center bg-gray-300 dark:bg-gray-600 rounded-full h-6 w-6 lg:h-8 lg:w-8">
-                                    <span className="text-[1.2rem] lg:text-[1.4rem] text-gray-800 dark:text-gray-300">{initial.toUpperCase()}</span>
-                                </div>
-                                <Link to={`/${username}`}>
-                                    <div className="text-[1.5rem] lg:text-[1.7rem] pb-1.5 font-semibold dark:text-gray-300 hover:underline">
-                                        {name || "Anonymous"}
-                                    </div>
-                                </Link>
-                            </div>
-                            <div>
-                                <div className="pt-2 text-gray-700 dark:text-gray-400 text-justify text-[0.8rem] lg:text-[1rem]">
-                                    Random sentence just to fill the desc of the author
-                                </div>
-                            </div>
-                        </div>       
                     </div>
                 </div>
             </div>

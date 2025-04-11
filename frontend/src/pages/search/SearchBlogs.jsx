@@ -46,7 +46,7 @@ const SearchBlogs = () => {
     return (
         <div>
             <Navbar />
-            <div className='h-full dark:bg-[#0a0b10] min-h-screen'>
+            <div className='h-full dark:bg-[#0a0b10] min-h-screen pt-20'>
                 {blogs.length > 0 && 
                     <div className='text-xl pt-4 dark:text-white w-[85%] m-auto'>        
                         results for <span className='font-semibold text-orange-400'>"{searchTerm}"</span>
