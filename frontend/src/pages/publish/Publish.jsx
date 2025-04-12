@@ -12,7 +12,7 @@ const Publish = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
-    return <div className="dark:bg-[#0a0b10]">
+    return <div className="dark:bg-[#0a0b10] min-h-screen">
         <Navbar />
         <div className="flex justify-center pt-32">
             <div className="w-[92%] lg:w-[83%]">

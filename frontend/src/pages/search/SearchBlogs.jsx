@@ -8,7 +8,7 @@ import Footer from '../../components/footer/Footer';
 
 const SearchBlogs = () => {
     const [blogs, setBlogs] = useState([])
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const location = useLocation();
 
     const searchParams = new URLSearchParams(location.search);
@@ -33,7 +33,7 @@ const SearchBlogs = () => {
         return (
             <div>
                 <Navbar />
-                <div className="dark:bg-[#0a0b10] pt-5">
+                <div className="dark:bg-[#0a0b10] pt-28">
                     <BlogCardSkeleton />
                     <BlogCardSkeleton />
                     <BlogCardSkeleton />
