@@ -17,7 +17,7 @@ const Signup = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false)
     return (
-        <div className='h-screen pt-2 bg-gray-100 dark:bg-[#0a0b10] flex flex-col'>
+        <div className='min-h-screen pt-2 bg-gray-100 dark:bg-[#0a0b10] flex flex-col'>
             <div className='w-20 flex justify-end'>
                 <ThemeBtn />
             </div>
