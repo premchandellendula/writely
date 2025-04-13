@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import ThemeBtn from '../../components/navbar/ThemeBtn'
 import { toast } from 'sonner'
+import { BACKEND_URL } from '../../../config'
 
 const Signup = () => {
     const [username, setUsername] = useState("");
@@ -41,7 +42,7 @@ const Signup = () => {
                     onClick={async () => {
                         setLoading(true)
                         try{
-                            const response = await axios.post("http://localhost:3000/api/v1/auth/signup", {
+                            const response = await axios.post(`${BACKEND_URL}/auth/signup`, {
                                 username,
                                 name,
                                 email,

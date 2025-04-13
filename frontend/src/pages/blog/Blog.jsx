@@ -10,6 +10,7 @@ import DOMPurify from 'dompurify'
 import Comment from '../../components/comments/Comment';
 import Comments from '../../components/comments/Comments';
 import AuthorInfoSection from '../../components/profile/AuthorInfoSection';
+import { BACKEND_URL } from '../../../config';
 
 const Blog = () => {
     const {id} = useParams();
@@ -22,7 +23,7 @@ const Blog = () => {
     const [username, setUsername] = useState("");
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/v1/blogs/blog/${id}`)
+        axios.get(`${BACKEND_URL}/blogs/blog/${id}`)
             .then(res => {
                 setBlog(res.data.blog)
                 setInitial(res.data.blog.author.name[0]);

@@ -6,6 +6,7 @@ import ProfileSkeleton from '../../components/skeletons/ProfileSkeleton'
 import { useParams } from 'react-router-dom'
 import ProfileInfoSection from '../../components/profile/ProfileInfoSection'
 import MyBlogs from '../../components/profile/MyBlogs'
+import { BACKEND_URL } from '../../../config'
 
 const UserProfile = () => {
     const [details, setDetails] = useState({});
@@ -15,7 +16,7 @@ const UserProfile = () => {
     const { username } = useParams();
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/v1/user/${username}`)
+        axios.get(`${BACKEND_URL}/user/${username}`)
         .then(res => {
             setDetails(res.data.user)
             // console.log(res.data.user.blogs);

@@ -3,13 +3,14 @@ import { useEffect, useState } from "react"
 import CommentsSpinner from "../skeletons/CommentsSpinner"
 import CommentCard from "./CommentCard"
 import Footer from "../footer/Footer"
+import { BACKEND_URL } from "../../../config"
 
 const Comments = ({id}) => {
     const [comments, setComments] = useState([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/v1/comments/${id}`)
+        axios.get(`${BACKEND_URL}/comments/${id}`)
             .then(res => {
                 setComments(res.data.comments)
                 setLoading(false);

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../pages/other/AuthProvider";
 import axios from "axios";
 import { toast } from "sonner";
+import { BACKEND_URL } from "../../../config";
 
 const Comment = () => {
     const [comment, setComment] = useState("")
@@ -46,7 +47,7 @@ const Comment = () => {
 
                     try{
                         // console.log("1")
-                        const response = await axios.post("http://localhost:3000/api/v1/comments", {
+                        const response = await axios.post(`${BACKEND_URL}/comments`, {
                             comment,
                             blogId: parseInt(id)
                         }, {

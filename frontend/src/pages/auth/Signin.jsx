@@ -9,6 +9,7 @@ import PasswordInput from '../../components/auth/PasswordInput'
 import { useAuth } from '../other/AuthProvider'
 import ThemeBtn from '../../components/navbar/ThemeBtn'
 import { toast } from 'sonner'
+import { BACKEND_URL } from '../../../config'
 
 const Signin = () => {
     const [email, setEmail] = useState("")
@@ -35,7 +36,7 @@ const Signin = () => {
                     onClick={async () => {
                         setLoading(true)
                         try{
-                            const response = await axios.post("http://localhost:3000/api/v1/auth/signin", {
+                            const response = await axios.post(`${BACKEND_URL}/auth/signin`, {
                                 email,
                                 password
                             })

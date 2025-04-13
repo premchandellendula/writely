@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { BACKEND_URL } from '../../../config';
 
 const Likes = ({id, initialLiked=false, initialCount=0}) => {
     const [likeCount, setLikeCount] = useState(initialCount);
@@ -12,7 +13,7 @@ const Likes = ({id, initialLiked=false, initialCount=0}) => {
     useEffect(() => {
         const checkLikeStatus = async () => {
             try{
-                const response = await axios.get(`http://localhost:3000/api/v1/likes/liked/${id}`, {
+                const response = await axios.get(`${BACKEND_URL}/likes/liked/${id}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`
                     }
@@ -39,7 +40,7 @@ const Likes = ({id, initialLiked=false, initialCount=0}) => {
             // For the UI update
             setLiked(!liked)
             setLikeCount(liked ? likeCount - 1 : likeCount + 1);
-            const res = await axios.post(`http://localhost:3000/api/v1/likes/like/${id}`, {}, {
+            const res = await axios.post(`${BACKEND_URL}/likes/like/${id}`, {}, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }

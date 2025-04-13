@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { profileBackground } from "../../pages/utils/profileBackground";
 import CommentSkeleton from "../skeletons/CommentSkeleton";
 import { timeAgo } from "../../pages/utils/timeAgo";
+import { BACKEND_URL } from "../../../config";
 
 const CommentCard = ({comment, createdAt, userId}) => {
     const [username, setUsername] = useState("");
@@ -10,7 +11,7 @@ const CommentCard = ({comment, createdAt, userId}) => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/v1/auth/user/${userId}`)
+        axios.get(`${BACKEND_URL}/auth/user/${userId}`)
             .then(res => {
                 setUsername(res.data.user.username)
                 // console.log(res.data.user.username);

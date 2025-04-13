@@ -5,6 +5,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import TextEditor from "../../components/RTE/TextEditor";
 import { toast } from "sonner";
+import { BACKEND_URL } from "../../../config";
 
 const Publish = () => {
     const [title, setTitle] = useState("");
@@ -36,7 +37,7 @@ const Publish = () => {
                     setLoading(true)
 
                     try{
-                        const response = await axios.post("http://localhost:3000/api/v1/blogs/", {
+                        const response = await axios.post(`${BACKEND_URL}/blogs/`, {
                             title,
                             content
                         }, 

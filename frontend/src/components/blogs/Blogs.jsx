@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import BlogCard from './BlogCard'
 import Navbar from '../navbar/Navbar'
 import BlogCardSkeleton from '../skeletons/BlogCardSkeleton'
+import { BACKEND_URL } from '../../../config'
 
 const Blogs = () => {
     const [blogs, setBlogs] = useState([])
@@ -70,7 +71,7 @@ const Blogs = () => {
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/v1/pagination/posts?page=${page}&limit=${limit}`)
+        axios.get(`${BACKEND_URL}/pagination/posts?page=${page}&limit=${limit}`)
             .then(res => {
                 setBlogs(res.data.posts.reverse())
                 setTotalPages(res.data.totalPages)

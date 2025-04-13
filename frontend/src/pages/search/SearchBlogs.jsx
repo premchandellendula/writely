@@ -5,6 +5,7 @@ import axios from 'axios';
 import BlogCard from '../../components/blogs/BlogCard';
 import BlogCardSkeleton from '../../components/skeletons/BlogCardSkeleton';
 import Footer from '../../components/footer/Footer';
+import { BACKEND_URL } from '../../../config';
 
 const SearchBlogs = () => {
     const [blogs, setBlogs] = useState([])
@@ -18,7 +19,7 @@ const SearchBlogs = () => {
         if(searchTerm){
             setLoading(true);
             
-            axios.get(`http://localhost:3000/api/v1/search?searchTerm=${encodeURIComponent(searchTerm)}`)
+            axios.get(`${BACKEND_URL}/search?searchTerm=${encodeURIComponent(searchTerm)}`)
                 .then(res => {
                     setBlogs(res.data.blogs)
                     setLoading(false);

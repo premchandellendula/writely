@@ -2,13 +2,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Spinner from "../skeletons/Spinner";
 import MyBlogCard from "./MyBlogCard";
+import { BACKEND_URL } from "../../../config";
 
 const MyLikes = () => {
     const [likes, setLikes] = useState([])
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get("http://localhost:3000/api/v1/user/mylikes", {
+        axios.get(`${BACKEND_URL}/user/mylikes`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
             }

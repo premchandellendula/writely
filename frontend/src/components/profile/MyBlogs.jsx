@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Spinner from "../skeletons/Spinner";
 import MyBlogCard from "./MyBlogCard";
+import { BACKEND_URL } from "../../../config";
 
 const MyBlogs = ({id}) => {
     // console.log(blogs);
@@ -10,7 +11,7 @@ const MyBlogs = ({id}) => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/v1/user/blogs/${id}`)
+        axios.get(`${BACKEND_URL}/user/blogs/${id}`)
         .then(res => {
             setBlogs(res.data.blogs)
             setLoading(false);

@@ -7,6 +7,7 @@ import SearchBar from '../search/SearchBar'
 import { useBlurIn } from '../../pages/utils/animation'
 import axios from 'axios'
 import { toast } from 'sonner'
+import { BACKEND_URL } from '../../../config'
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
@@ -18,7 +19,7 @@ const Navbar = () => {
     const [initial, setInitial] = useState('');
 
     useEffect(() => {
-        axios.get("http://localhost:3000/api/v1/auth/user/profile", {
+        axios.get(`${BACKEND_URL}/auth/user/profile`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
             }

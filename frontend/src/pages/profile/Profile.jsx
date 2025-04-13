@@ -7,6 +7,7 @@ import ProfileInfoSection from '../../components/profile/ProfileInfoSection'
 import TabButton from '../../components/profile/TabButton'
 import MyBlogs from '../../components/profile/MyBlogs'
 import MyLikes from '../../components/profile/MyLikes'
+import { BACKEND_URL } from '../../../config'
 
 const Profile = () => {
     const [details, setDetails] = useState({})
@@ -17,7 +18,7 @@ const Profile = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get("http://localhost:3000/api/v1/auth/user/profile", {
+        axios.get(`${BACKEND_URL}/auth/user/profile`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
             }
